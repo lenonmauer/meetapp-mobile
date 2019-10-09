@@ -6,6 +6,12 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     height: 50,
+  },
+
+  input: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 50,
     backgroundColor: colors.black,
     fontSize: 18,
     color: colors.white,
