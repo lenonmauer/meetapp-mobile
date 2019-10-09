@@ -4,10 +4,16 @@ import { store } from './store';
 
 import Routes from '~/routes';
 
+import Navigation from './navigation';
+import NavigationService from '~/services/navigation';
+
 function App() {
   return (
     <Provider store={store}>
-      <Routes />
+      <StatusBar barStyle="dark-content" />
+      <Navigation
+        ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
+      />
     </Provider>
   );
 }

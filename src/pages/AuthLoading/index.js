@@ -3,14 +3,14 @@ import { SafeAreaView, Text, View } from 'react-native';
 
 import styles from './styles';
 
-function SignUp() {
+function AuthLoading() {
   return (
     <Fragment>
       <SafeAreaView style={styles.container}>
-        <Text>SignUp</Text>
+        <Text>Loading...</Text>
       </SafeAreaView>
     </Fragment>
   );
 }
 
-export default SignUp;
+export default AuthLoading;
