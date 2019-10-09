@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
+
+import Header from '~/components/Header';
 
 import styles from './styles';
 
 function Dashboard() {
   return (
-    <Fragment>
-      <SafeAreaView style={styles.container}>
-        <Text>Dashboard</Text>
-      </SafeAreaView>
-    </Fragment>
+    <SafeAreaView style={styles.container}>
+      <Header />
+      <Text>Dashboard</Text>
+    </SafeAreaView>
   );
 }
 

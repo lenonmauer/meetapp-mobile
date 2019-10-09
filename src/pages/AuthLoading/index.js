@@ -1,15 +1,21 @@
-import React, { Fragment } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, ActivityIndicator } from 'react-native';
+
+import navigationService from '~/services/navigation';
 
 import styles from './styles';
 
 function AuthLoading() {
+  useEffect(() => {
+    setTimeout(() => {
+      navigationService.navigate('SignIn');
+    }, 1000);
+  });
+
   return (
-    <Fragment>
-      <SafeAreaView style={styles.container}>
-        <Text>Loading...</Text>
-      </SafeAreaView>
-    </Fragment>
+    <SafeAreaView style={styles.container}>
+      <ActivityIndicator size="large" color={styles.spinner.color} />
+    </SafeAreaView>
   );
 }
 
