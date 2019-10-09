@@ -15,4 +15,11 @@ export default StyleSheet.create({
     fontSize: 18,
     textAlign: center,
   },
+
+  themes: {
+    dark: {
+      backgroundColor: colors.primary,
+      height: 42,
+    },
+  },
 });

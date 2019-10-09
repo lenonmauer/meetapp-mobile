@@ -4,10 +4,12 @@ import { View, TouchableOpacity, Text } from 'react-native';
 
 import styles from './styles';
 
-function Button({ children }) {
+function Button({ children, theme }) {
+  const isDakTheme = theme === 'dark';
+
   return (
     <TouchableOpacity>
-      <View style={styles.container}>
+      <View style={[styles.container, isDakTheme && styles.themes.dark]}>
         <Text style={styles.label}>{children}</Text>
       </View>
     </TouchableOpacity>
@@ -16,6 +18,11 @@ function Button({ children }) {
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
+  theme: PropTypes.string,
+};
+
+Button.defaultProps = {
+  theme: null,
 };
 
 export default Button;
