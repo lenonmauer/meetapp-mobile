@@ -13,7 +13,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: colors.white,
     fontSize: 18,
-    textAlign: center,
+    textAlign: 'center',
   },
 
   themes: {

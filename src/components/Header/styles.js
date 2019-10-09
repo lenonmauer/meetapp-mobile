@@ -6,8 +6,8 @@ export default StyleSheet.create({
     backgroundColor: colors.black,
     flexDirection: 'row',
     height: 64,
-    justifyContent: center,
-    alignItems: center,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   logo: {
