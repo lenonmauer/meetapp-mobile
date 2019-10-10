@@ -12,6 +12,6 @@ export default {
   background: '#24202C',
 
   transparent: 'transparent',
-  darkTransparent: 'rgba(0, 0, 0, 0.6)',
+  darkTransparent: 'rgba(0, 0, 0, 0.3)',
   whiteTransparent: 'rgba(255, 255, 255, 0.3)',
 };
