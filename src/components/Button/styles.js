@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors, metrics } from '~/styles';
 
-export default StyleSheet.create({
+export default {
   container: {
     backgroundColor: colors.primary,
     height: 50,
@@ -18,7 +18,13 @@ export default StyleSheet.create({
   },
 
   themeDark: {
-    backgroundColor: colors.primary,
-    height: 42,
+    container: {
+      backgroundColor: colors.primaryDark,
+      height: 42,
+    },
+
+    label: {
+      fontSize: 16,
+    },
   },
-});
+};

@@ -4,13 +4,19 @@ import { View, TouchableOpacity, Text } from 'react-native';
 
 import styles from './styles';
 
-function Button({ children, theme }) {
-  const isDakTheme = theme === 'dark';
+function Button({ children, theme, style = {} }) {
+  const isDarkTheme = theme === 'dark';
+  const buttonStyle = [
+    styles.container,
+    isDarkTheme && styles.themeDark.container,
+    style,
+  ];
+  const labelStyle = [styles.label, isDarkTheme && styles.themeDark.label];
 
   return (
     <TouchableOpacity>
-      <View style={[styles.container, isDakTheme && styles.themeDark]}>
-        <Text style={styles.label}>{children}</Text>
+      <View style={buttonStyle}>
+        <Text style={labelStyle}>{children}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     height: 1,
     width: '100%',
-    backgroundColor: colors.regular,
-    marginVertical: metrics.baseMargin,
+    backgroundColor: colors.darker,
+    marginVertical: metrics.baseMargin * 2,
   },
 });

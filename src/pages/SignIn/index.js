@@ -25,8 +25,4 @@ function SignIn() {
   );
 }
 
-SignIn.navigationOptions = {
-  header: null,
-};
-
 export default SignIn;

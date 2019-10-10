@@ -1,12 +1,27 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
+import Logo from '~/components/Logo';
+import Input from '~/components/Input';
+import Button from '~/components/Button';
+
 import styles from './styles';
 
 function SignUp() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>SignUp</Text>
+      <View style={styles.form}>
+        <View style={styles.logoWrapper}>
+          <Logo size={42} />
+        </View>
+
+        <Input placeholder="Nome completo" />
+        <Input placeholder="Digite seu e-mail" />
+        <Input placeholder="Sua senha secreta" />
+        <Button>Entrar</Button>
+
+        <Text style={styles.linkSignup}>Criar conta grátis</Text>
+      </View>
     </SafeAreaView>
   );
 }

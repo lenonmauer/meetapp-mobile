@@ -8,7 +8,7 @@ import styles from './styles';
 function AuthLoading() {
   useEffect(() => {
     setTimeout(() => {
-      navigationService.navigate('SignIn');
+      navigationService.navigate('App');
     }, 1000);
   });
 
