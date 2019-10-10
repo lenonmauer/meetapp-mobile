@@ -12,7 +12,7 @@ import ToastService from '~/services/toast';
 function App() {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" backgroundColor="#000" />
       <Toast ref={toastRef => ToastService.setToast(toastRef)} />
       <Navigation
         ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
