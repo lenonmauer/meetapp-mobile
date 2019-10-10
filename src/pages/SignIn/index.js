@@ -11,14 +11,22 @@ function SignIn() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.form}>
-        <Logo size={styles.logo.size} />
+        <View style={styles.logoWrapper}>
+          <Logo size={42} />
+        </View>
+
         <Input placeholder="Digite seu e-mail" />
         <Input placeholder="Sua senha secreta" />
         <Button>Entrar</Button>
+
         <Text style={styles.linkSignup}>Criar conta grátis</Text>
       </View>
     </SafeAreaView>
   );
 }
+
+SignIn.navigationOptions = {
+  header: null,
+};
 
 export default SignIn;

@@ -9,8 +9,4 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  logo: {
-    size: 25,
-  },
 });

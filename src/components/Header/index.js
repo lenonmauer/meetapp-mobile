@@ -8,7 +8,7 @@ import styles from './styles';
 function Header() {
   return (
     <View style={styles.container}>
-      <Logo size={styles.logo.size} />
+      <Logo size={24} />
     </View>
   );
 }

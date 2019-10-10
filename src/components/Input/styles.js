@@ -11,11 +11,16 @@ export default StyleSheet.create({
   input: {
     flex: 1,
     flexDirection: 'row',
+    borderRadius: metrics.baseRadius,
     height: 50,
-    backgroundColor: colors.black,
+    backgroundColor: colors.darkTransparent,
     fontSize: 18,
     color: colors.white,
-    paddingHorizontal: metrics.basePadding / 2,
+    paddingHorizontal: metrics.basePadding * 2,
     paddingVertical: metrics.basePadding / 2,
+  },
+
+  placeholder: {
+    color: colors.regular,
   },
 });

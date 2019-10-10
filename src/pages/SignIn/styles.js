@@ -5,20 +5,25 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: metrics.basePadding,
+    paddingHorizontal: metrics.basePadding * 2,
+    backgroundColor: colors.background,
   },
 
   form: {
-    height: '50%',
-    justifyContent: 'space-between',
+    height: 320,
   },
 
-  logo: {
-    size: 42,
+  logoWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 50,
   },
 
   linkSignup: {
-    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 20,
     color: colors.regular,
+    fontWeight: 'bold',
   },
 });

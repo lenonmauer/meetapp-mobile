@@ -9,7 +9,11 @@ function Input(props) {
 
   return (
     <View style={[styles.container, containerStyle]}>
-      <TextInput {...props} style={finalStyle} />
+      <TextInput
+        {...props}
+        style={finalStyle}
+        placeholderTextColor={styles.placeholder.color}
+      />
     </View>
   );
 }

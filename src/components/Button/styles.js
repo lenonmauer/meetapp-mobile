@@ -7,6 +7,7 @@ export default StyleSheet.create({
     height: 50,
     width: '100%',
     borderRadius: metrics.baseRadius,
+    justifyContent: 'center',
   },
 
   label: {
@@ -16,10 +17,8 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
 
-  themes: {
-    dark: {
-      backgroundColor: colors.primary,
-      height: 42,
-    },
+  themeDark: {
+    backgroundColor: colors.primary,
+    height: 42,
   },
 });

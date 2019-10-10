@@ -9,7 +9,7 @@ function Button({ children, theme }) {
 
   return (
     <TouchableOpacity>
-      <View style={[styles.container, isDakTheme && styles.themes.dark]}>
+      <View style={[styles.container, isDakTheme && styles.themeDark]}>
         <Text style={styles.label}>{children}</Text>
       </View>
     </TouchableOpacity>

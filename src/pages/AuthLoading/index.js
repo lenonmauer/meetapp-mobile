@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, ActivityIndicator } from 'react-native';
+import { SafeAreaView, ActivityIndicator, Text } from 'react-native';
 
 import navigationService from '~/services/navigation';
 
