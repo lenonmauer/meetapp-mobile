@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
 
   form: {
-    height: 390,
+    height: 400,
   },
 
   logoWrapper: {
@@ -19,7 +19,11 @@ export default StyleSheet.create({
     marginBottom: 50,
   },
 
-  linkSignup: {
+  input: {
+    marginBottom: metrics.baseMargin,
+  },
+
+  linkSign: {
     textAlign: 'center',
     marginTop: 20,
     fontSize: 20,

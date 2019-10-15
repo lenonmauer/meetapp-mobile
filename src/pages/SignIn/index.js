@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 
 import Logo from '~/components/Logo';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
+
+import NavigationService from '~/services/navigation';
 
 import styles from './styles';
 
@@ -15,11 +17,13 @@ function SignIn() {
           <Logo size={42} />
         </View>
 
-        <Input placeholder="Digite seu e-mail" />
-        <Input placeholder="Sua senha secreta" />
+        <Input containerStyle={styles.input} placeholder="Digite seu e-mail" />
+        <Input containerStyle={styles.input} placeholder="Sua senha secreta" />
         <Button>Entrar</Button>
 
-        <Text style={styles.linkSignup}>Criar conta grátis</Text>
+        <TouchableOpacity onPress={() => NavigationService.navigate('SignUp')}>
+          <Text style={styles.linkSign}>Criar conta grátis</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

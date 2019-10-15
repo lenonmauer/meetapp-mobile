@@ -11,8 +11,6 @@ import AuthLoading from '~/pages/AuthLoading';
 import SignUp from '~/pages/SignUp';
 import SignIn from '~/pages/SignIn';
 
-import CustomTabBar from './CustomTabBar';
-
 const AuthStack = createStackNavigator(
   {
     SignIn,
@@ -63,8 +61,9 @@ const AppStack = createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: '#fff',
       inactiveTintColor: '#999',
-      tabStyle: {
-        backgroundColor: 'rgba(0,0,0,.91)',
+      style: {
+        backgroundColor: 'rgba(100,0,0,.91)',
+        height: 80,
       },
     },
   },
