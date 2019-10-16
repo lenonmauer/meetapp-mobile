@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import { store } from '~/store/index';
 
-import Navigation from '~/components/Navigation';
+import Navigation from '~/navigation';
 import NavigationService from '~/services/navigation';
 import ToastService from '~/services/toast';
 
