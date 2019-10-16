@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   root: true,
   extends: ['airbnb', '@react-native-community', 'plugin:prettier/recommended'],
   plugins: ['react', 'prettier'],

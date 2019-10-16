@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android --no-packager",
-    "ios": "react-native run-ios",
     "start": "react-native start",
+    "restart": "yarn android && yarn start",
+    "ios": "react-native run-ios",
     "test": "jest",
     "lint": "eslint ."
   },

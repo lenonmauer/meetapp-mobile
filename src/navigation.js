@@ -57,13 +57,15 @@ const AppStack = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Profile',
+    initialRouteName: 'Dashboard',
     tabBarOptions: {
       activeTintColor: '#fff',
       inactiveTintColor: '#999',
       style: {
-        backgroundColor: 'rgba(100,0,0,.91)',
+        borderTopColor: 'transparent',
+        backgroundColor: '#2B1A2F',
         height: 80,
+        paddingVertical: 15,
       },
     },
   },
