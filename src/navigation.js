@@ -4,6 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { colors } from './styles';
+
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 import Subscription from '~/pages/Subscription';
@@ -32,7 +34,7 @@ const AppStack = createBottomTabNavigator(
           <Icon
             name="format-list-bulleted"
             size={32}
-            color={focused ? '#fff' : '#999'}
+            color={focused ? colors.white : colors.regular}
           />
         ),
       },
@@ -42,7 +44,11 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Inscrições',
         tabBarIcon: ({ focused }) => (
-          <Icon name="bookmark" size={32} color={focused ? '#fff' : '#999'} />
+          <Icon
+            name="tag"
+            size={32}
+            color={focused ? colors.white : colors.regular}
+          />
         ),
       },
     },
@@ -51,7 +57,11 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Meu  Perfil',
         tabBarIcon: ({ focused }) => (
-          <Icon name="account" size={32} color={focused ? '#fff' : '#999'} />
+          <Icon
+            name="account"
+            size={32}
+            color={focused ? colors.white : colors.regular}
+          />
         ),
       },
     },
@@ -59,11 +69,11 @@ const AppStack = createBottomTabNavigator(
   {
     initialRouteName: 'Dashboard',
     tabBarOptions: {
-      activeTintColor: '#fff',
-      inactiveTintColor: '#999',
+      activeTintColor: colors.white,
+      inactiveTintColor: colors.regular,
       style: {
-        borderTopColor: 'transparent',
-        backgroundColor: '#2B1A2F',
+        borderTopColor: colors.transparent,
+        backgroundColor: colors.background,
         height: 80,
         paddingVertical: 15,
       },
