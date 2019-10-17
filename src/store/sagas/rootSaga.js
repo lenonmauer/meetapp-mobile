@@ -8,12 +8,12 @@ import { getMySubscriptions, postSubscribe } from '~/store/sagas/subscription';
 
 export default function* rootSaga() {
   yield all([
-    takeLatest(null, getMeetups),
-    takeLatest(null, getProfile),
-    takeLatest(null, putProfile),
-    takeLatest(null, postSignIn),
-    takeLatest(null, postSignUp),
-    takeLatest(null, getMySubscriptions),
-    takeLatest(null, postSubscribe),
+    takeLatest('', getMeetups),
+    takeLatest('', getProfile),
+    takeLatest('', putProfile),
+    takeLatest('', postSignIn),
+    takeLatest('', postSignUp),
+    takeLatest('', getMySubscriptions),
+    takeLatest('', postSubscribe),
   ]);
 }
