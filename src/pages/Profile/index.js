@@ -9,8 +9,10 @@ import Divider from '~/components/Divider';
 import styles from './styles';
 
 function Profile() {
+  console.log('Profile');
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header />
 
       <View style={styles.form}>
@@ -31,7 +33,7 @@ function Profile() {
 
         <Button theme="dark">Sair do Meetapp</Button>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

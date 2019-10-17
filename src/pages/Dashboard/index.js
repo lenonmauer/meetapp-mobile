@@ -17,6 +17,8 @@ function Dashboard() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [date, setDate] = useState(new Date());
 
+  console.log('Dashboard');
+
   function handleEndReached(info) {
     console.log(info);
 

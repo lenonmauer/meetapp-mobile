@@ -1,8 +1,15 @@
 import { combineReducers } from 'redux';
 
+import auth from './auth';
+import user from './user';
+import meetup from './meetup';
+import subscription from './subscription';
+
 const reducers = combineReducers({
-  // Remova essa linha depois de adicionar seus ducks
-  example: () => [],
+  auth,
+  user,
+  meetup,
+  subscription,
 });
 
 export default reducers;
