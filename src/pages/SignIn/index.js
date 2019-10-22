@@ -1,18 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState, useRef, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavigationContext } from 'react-navigation';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  Keyboard,
+} from 'react-native';
 import { Formik } from 'formik';
 
 import Logo from '~/components/Logo';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
 
+import { AuthActions } from '~/store/ducks/auth';
+
 import NavigationService from '~/services/navigation';
+import Validator from '~/util/validator';
+import schema from '~/schemas/signin';
 
 import styles from './styles';
 
 function SignIn() {
-  function handleFormikSubmit(values) {
-    console.log(values);
+  const passwordRef = useRef(null);
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
+  const navigation = useContext(NavigationContext);
+
+  console.tron.log('in app', navigation.state);
+
+  async function handleFormikSubmit(values) {
+    const isValid = await Validator.validate(schema, values);
+
+    Keyboard.dismiss();
+
+    if (!isValid) {
+      // return;
+    }
+
+    dispatch(AuthActions.postSigninRequest(values));
+  }
+
+  function handleSubmitEmail() {
+    passwordRef.current.focus();
   }
 
   function renderForm(props) {
@@ -28,15 +59,26 @@ function SignIn() {
           onChangeText={handleChange('email')}
           value={values.email}
           containerStyle={styles.input}
+          keyboardType="email-address"
+          returnKeyType="next"
+          onSubmitEditing={handleSubmitEmail}
           placeholder="Digite seu e-mail"
         />
+
         <Input
+          ref={passwordRef}
           onChangeText={handleChange('password')}
-          value={values.email}
+          value={values.password}
           containerStyle={styles.input}
+          secureTextEntry
+          returnKeyType="done"
           placeholder="Sua senha secreta"
+          onSubmitEditing={handleSubmit}
         />
-        <Button onPress={handleSubmit}>Entrar</Button>
+
+        <Button loading={loading} onPress={handleSubmit}>
+          Entrar
+        </Button>
 
         <TouchableOpacity onPress={() => NavigationService.navigate('SignUp')}>
           <Text style={styles.linkSign}>Criar conta grátis</Text>

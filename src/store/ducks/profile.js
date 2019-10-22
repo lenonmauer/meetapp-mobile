@@ -6,12 +6,12 @@ const INITIAL_STATE = Immutable({
 });
 
 export const Types = {
-  GET_PROFILE_REQUEST: '@user/GET_PROFILE_REQUEST',
-  GET_PROFILE_SUCCESS: '@user/GET_PROFILE_SUCCESS',
-  GET_PROFILE_FAILURE: '@user/GET_PROFILE_FAILURE',
-  PUT_PROFILE_REQUEST: '@user/PUT_PROFILE_REQUEST',
-  PUT_PROFILE_SUCCESS: '@user/PUT_PROFILE_SUCCESS',
-  PUT_PROFILE_FAILURE: '@user/PUT_PROFILE_FAILURE',
+  GET_PROFILE_REQUEST: '@profile/GET_PROFILE_REQUEST',
+  GET_PROFILE_SUCCESS: '@profile/GET_PROFILE_SUCCESS',
+  GET_PROFILE_FAILURE: '@profile/GET_PROFILE_FAILURE',
+  PUT_PROFILE_REQUEST: '@profile/PUT_PROFILE_REQUEST',
+  PUT_PROFILE_SUCCESS: '@profile/PUT_PROFILE_SUCCESS',
+  PUT_PROFILE_FAILURE: '@profile/PUT_PROFILE_FAILURE',
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -96,5 +96,5 @@ export const Actions = {
   }),
 };
 
-export const UserActions = Actions;
-export const UserTypes = Types;
+export const ProfileActions = Actions;
+export const ProfileTypes = Types;

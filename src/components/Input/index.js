@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { View, TextInput } from 'react-native';
 
 import styles from './styles';
 
-function Input(props) {
-  const { containerStyle, style } = props;
-  const finalStyle = [styles.input, style];
+function Input(props, ref) {
+  const { style, containerStyle } = props;
+  const inputStyle = [styles.input, style];
+  const containerStyleF = [styles.container, containerStyle];
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style={containerStyleF}>
       <TextInput
         {...props}
-        style={finalStyle}
+        ref={ref}
+        style={inputStyle}
+        underlineColorAndroid="transparent"
         placeholderTextColor={styles.placeholder.color}
       />
     </View>
   );
 }
 
-export default Input;
+export default forwardRef(Input);

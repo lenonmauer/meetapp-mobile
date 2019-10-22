@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { SafeAreaView, View, FlatList } from 'react-native';
+import { NavigationContext } from 'react-navigation';
 
 import Header from '~/components/Header';
 import Meetup from '~/components/Meetup';
@@ -13,11 +14,10 @@ const items = Array.from({ length: 10 }, (v, k) => ({
 }));
 
 function Dashboard() {
+  const navigation = useContext(NavigationContext);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [date, setDate] = useState(new Date());
-
-  console.log('Dashboard');
 
   function handleEndReached(info) {
     console.log(info);

@@ -2,23 +2,67 @@ import Immutable from 'seamless-immutable';
 
 const INITIAL_STATE = Immutable({
   token: null,
+  loading: false,
 });
 
 export const Types = {
-  SET_TOKEN: '@auth/SET_TOKEN',
-  CLEAR_TOKEN: '@auth/CLEAR_TOKEN',
+  POST_SIGNIN_REQUEST: '@auth/POST_SIGNIN_REQUEST',
+  POST_SIGNIN_SUCCESS: '@auth/POST_SIGNIN_SUCCESS',
+  POST_SIGNIN_FAILURE: '@auth/POST_SIGNIN_FAILURE',
+  POST_SIGNUP_REQUEST: '@auth/POST_SIGNUP_REQUEST',
+  POST_SIGNUP_SUCCESS: '@auth/POST_SIGNUP_SUCCESS',
+  POST_SIGNUP_FAILURE: '@auth/POST_SIGNUP_FAILURE',
+  LOGOUT: '@auth/LOGOUT',
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
-    case Types.SET_TOKEN: {
+    case Types.POST_SIGNIN_REQUEST: {
       return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case Types.POST_SIGNIN_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
         token: payload.token,
       };
     }
 
-    case Types.CLEAR_TOKEN: {
+    case Types.POST_SIGNIN_FAILURE: {
       return {
+        ...state,
+        loading: false,
+      };
+    }
+
+    case Types.POST_SIGNUP_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case Types.POST_SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+
+    case Types.POST_SIGNUP_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+
+    case Types.LOGOUT: {
+      return {
+        ...state,
         token: null,
       };
     }
@@ -29,15 +73,40 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 };
 
 export const Actions = {
-  setToken: token => ({
-    type: Types.SET_TOKEN,
+  postSigninRequest: data => ({
+    type: Types.POST_SIGNIN_REQUEST,
+    payload: { data },
+  }),
+
+  postSigninSuccess: token => ({
+    type: Types.POST_SIGNIN_SUCCESS,
+    payload: { token },
+  }),
+
+  postSigninFailure: () => ({
+    type: Types.POST_SIGNIN_FAILURE,
+    payload: {},
+  }),
+
+  postSignupRequest: data => ({
+    type: Types.POST_SIGNUP_REQUEST,
     payload: {
-      token,
+      data,
     },
   }),
 
-  clearToken: () => ({
-    type: Types.CLEAR_TOKEN,
+  postSignupSuccess: () => ({
+    type: Types.POST_SIGNUP_SUCCESS,
+    payload: {},
+  }),
+
+  postSignupFailure: () => ({
+    type: Types.POST_SIGNUP_FAILURE,
+    payload: {},
+  }),
+
+  logout: () => ({
+    type: Types.LOGOUT,
     payload: {},
   }),
 };

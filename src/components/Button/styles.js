@@ -27,4 +27,9 @@ export default {
       fontSize: 16,
     },
   },
+
+  spinner: {
+    color: colors.white,
+    size: 28,
+  },
 };

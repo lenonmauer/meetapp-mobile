@@ -1,9 +1,13 @@
 import { NavigationActions } from 'react-navigation';
 
-let navigator;
+let navigation = null;
 
 function setNavigator(ref) {
-  navigator = ref;
+  navigation = ref;
+}
+
+function goBack() {
+  return navigation.dispatch(NavigationActions.goBack());
 }
 
 function navigate(routeName, params) {
@@ -16,6 +20,7 @@ function navigate(routeName, params) {
 }
 
 export default {
-  navigate,
   setNavigator,
+  goBack,
+  navigate,
 };
