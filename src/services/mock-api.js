@@ -23,7 +23,32 @@ export default function mockAxios(axiosInstance) {
     ];
   });
 
-  mock.onGet('/meetups').reply(200);
+  mock.onGet('/meetups').reply(request => {
+    const now = Date.now();
+    const dayInMili = 86400000;
+    const { offset, limit } = request.params;
+
+    const data = Array.from({ length: 50 }, (v, k) => {
+      const timestamp = now + k * dayInMili;
+      const date = new Date(timestamp).toISOString();
+
+      return {
+        id: k,
+        title: `Meetup ${k}`,
+        thumb: 'https://via.placeholder.com/500',
+        date,
+        location: `Rua zueira`,
+        user: {
+          name: 'Don Joe',
+        },
+      };
+    });
+
+    const sliced = data.slice(offset, offset + limit);
+
+    return [200, sliced];
+  });
+
   mock.onGet('/meetups/subscriptions').reply(200);
   mock.onGet('/meetups/:meetupId/subscriptions').reply(200);
 }

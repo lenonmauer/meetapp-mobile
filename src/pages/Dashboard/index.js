@@ -1,38 +1,37 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { SafeAreaView, View, FlatList } from 'react-native';
-import { NavigationContext } from 'react-navigation';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View, FlatList, ActivityIndicator } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '~/components/Header';
 import Meetup from '~/components/Meetup';
 import DateSwitch from '~/components/DateSwitch';
 
+import { MeetupActions } from '~/store/ducks/meetup';
+
 import styles from './styles';
 
-const items = Array.from({ length: 10 }, (v, k) => ({
-  id: k,
-  label: `opaaaaaa${k}`,
-}));
-
 function Dashboard() {
-  const navigation = useContext(NavigationContext);
-  const [refreshing, setRefreshing] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const dispatch = useDispatch();
+  const [refreshing] = useState(false);
   const [date, setDate] = useState(new Date());
 
-  function handleEndReached(info) {
-    console.log(info);
-
-    setLoadingMore(true);
-    const offset = items.length;
-    const limit = 5;
-    console.log('handleEndReached');
-
-    // load more
-  }
+  const { loading, data: meetups } = useSelector(state => state.meetup);
 
   useEffect(() => {
-    // load first meetups
-  });
+    dispatch(MeetupActions.getMeetupsRequest(10, true));
+  }, [dispatch]);
+
+  function handleEndReached() {
+    dispatch(MeetupActions.getMeetupsRequest(5));
+  }
+
+  function handleRefresh() {
+    dispatch(MeetupActions.getMeetupsRequest(10, true));
+  }
+
+  function handleDateChange(newDate) {
+    setDate(newDate);
+  }
 
   function renderItem({ item }) {
     return (
@@ -44,10 +43,6 @@ function Dashboard() {
     );
   }
 
-  function handleDateChange(newDate) {
-    setDate(newDate);
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <Header />
@@ -55,14 +50,23 @@ function Dashboard() {
       <View style={styles.content}>
         <DateSwitch date={date} onDateChange={handleDateChange} />
 
-        <FlatList
-          refreshing={refreshing}
-          data={items}
-          keyExtractor={item => item.id.toString()}
-          renderItem={renderItem}
-          onEndReached={handleEndReached}
-          onEndReachedThreshold={0.3}
-        />
+        {meetups.length > 0 && (
+          <FlatList
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+            data={meetups}
+            keyExtractor={item => item.id.toString()}
+            renderItem={renderItem}
+            onEndReached={handleEndReached}
+            onEndReachedThreshold={0.3}
+          />
+        )}
+
+        {loading && (
+          <View>
+            <ActivityIndicator size={48} color="white" />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );

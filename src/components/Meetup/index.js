@@ -11,12 +11,12 @@ function Meetup({ meetup, onPress, actionLabel }) {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={{ uri: 'https://via.placeholder.com/500' }}
+        source={{ uri: meetup.thumb }}
         resizeMode="cover"
       />
 
       <View style={styles.content.container}>
-        <Text style={styles.title}>Meetup de React Native</Text>
+        <Text style={styles.title}>{meetup.title}</Text>
 
         <View style={styles.content.wrapper}>
           <Icon
@@ -25,7 +25,7 @@ function Meetup({ meetup, onPress, actionLabel }) {
             color={styles.content.icon.color}
             style={styles.content.icon.style}
           />
-          <Text style={styles.content.description}>24 de Junho, às 20h</Text>
+          <Text style={styles.content.description}>{meetup.date}</Text>
         </View>
 
         <View style={styles.content.wrapper}>
@@ -35,9 +35,7 @@ function Meetup({ meetup, onPress, actionLabel }) {
             color={styles.content.icon.color}
             style={styles.content.icon.style}
           />
-          <Text style={styles.content.description}>
-            Rua Guilherme Gembala, 260
-          </Text>
+          <Text style={styles.content.description}>{meetup.location}</Text>
         </View>
 
         <View style={styles.content.wrapper}>
@@ -48,7 +46,7 @@ function Meetup({ meetup, onPress, actionLabel }) {
             style={styles.content.icon.style}
           />
           <Text style={styles.content.description}>
-            Organizador: Lenon Mauer
+            {`Organizador: ${meetup.user.name}`}
           </Text>
         </View>
 
