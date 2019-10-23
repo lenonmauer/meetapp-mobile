@@ -11,6 +11,7 @@ export const Types = {
   POST_SIGNUP_REQUEST: '@auth/POST_SIGNUP_REQUEST',
   POST_SIGNUP_SUCCESS: '@auth/POST_SIGNUP_SUCCESS',
   POST_SIGNUP_FAILURE: '@auth/POST_SIGNUP_FAILURE',
+  LOGOUT: '@auth/LOGOUT',
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -93,6 +94,11 @@ export const Actions = {
 
   postSignupFailure: () => ({
     type: Types.POST_SIGNUP_FAILURE,
+    payload: {},
+  }),
+
+  logout: () => ({
+    type: Types.LOGOUT,
     payload: {},
   }),
 };
