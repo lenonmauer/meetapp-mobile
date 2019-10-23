@@ -1,7 +1,7 @@
 import { put } from 'redux-saga/effects';
 
 import api from '~/services/api';
-import ToastService from '~/services/toast';
-import NavigationService from '~/services/navigation';
+import ToastUtil from '~/util/toast';
+import NavigationUtil from '~/util/navigation';
 
 export function* getMeetups() {}

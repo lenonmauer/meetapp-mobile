@@ -80,9 +80,12 @@ export const Actions = {
     payload: {},
   }),
 
-  putProfileRequest: data => ({
+  putProfileRequest: (data, callback) => ({
     type: Types.PUT_PROFILE_REQUEST,
-    payload: {},
+    payload: {
+      data,
+      callback,
+    },
   }),
 
   putProfileSuccess: () => ({

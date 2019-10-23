@@ -4,7 +4,7 @@ import api from '~/services/api';
 
 import { AuthActions } from '~/store/ducks/auth';
 
-import NavigationService from '~/services/navigation';
+import NavigationUtil from '~/util/navigation';
 import errorHandler from '~/util/error-handler';
 import SessionHelper from '~/util/session';
 
@@ -18,7 +18,7 @@ export function* postSignIn(action) {
 
     yield put(AuthActions.postSigninSuccess(token));
     yield call(SessionHelper.setToken, token);
-    yield call(NavigationService.navigate, 'Dashboard');
+    yield call(NavigationUtil.navigate, 'Dashboard');
   } else {
     yield errorHandler.handleHttpError(response);
     yield put(AuthActions.postSignupFailure());

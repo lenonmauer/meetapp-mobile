@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import { store } from '~/store/index';
 
 import Navigation from '~/navigation';
-import NavigationService from '~/services/navigation';
-import ToastService from '~/services/toast';
+import NavigationUtil from '~/util/navigation';
+import ToastUtil from '~/util/toast';
 
 import { colors } from '~/styles';
 
@@ -16,11 +16,11 @@ function App() {
     <Provider store={store}>
       <StatusBar barStyle="light-content" backgroundColor={colors.black} />
       <Toast
-        ref={toastRef => ToastService.setToast(toastRef)}
+        ref={toastRef => ToastUtil.setToast(toastRef)}
         style={{ backgroundColor: colors.primaryDark }}
       />
       <Navigation
-        ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
+        ref={navigatorRef => NavigationUtil.setNavigator(navigatorRef)}
       />
     </Provider>
   );

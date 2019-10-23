@@ -10,6 +10,10 @@ function goBack() {
   return navigation.dispatch(NavigationActions.goBack());
 }
 
+function getParams() {
+  return navigation.state.params;
+}
+
 function navigate(routeName, params) {
   return navigation.dispatch(
     NavigationActions.navigate({
@@ -23,4 +27,5 @@ export default {
   setNavigator,
   goBack,
   navigate,
+  getParams,
 };

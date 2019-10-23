@@ -5,8 +5,8 @@ import api from '~/services/api';
 import { AuthActions } from '~/store/ducks/auth';
 
 import errorHandler from '~/util/error-handler';
-import NavigationService from '~/services/navigation';
-import ToastService from '~/services/toast';
+import NavigationUtil from '~/util/navigation';
+import ToastUtil from '~/util/toast';
 
 export function* postSignUp(action) {
   const { data } = action.payload;
@@ -15,8 +15,8 @@ export function* postSignUp(action) {
 
   if (response.ok) {
     yield put(AuthActions.postSignupSuccess());
-    yield call(NavigationService.navigate, 'SignIn');
-    yield call(ToastService.show, 'Cadastro realizado. Faça o login.', 3000);
+    yield call(NavigationUtil.navigate, 'SignIn');
+    yield call(ToastUtil.show, 'Cadastro realizado. Faça o login.', 3000);
   } else {
     yield errorHandler.handleHttpError(response);
     yield put(AuthActions.postSignupFailure());

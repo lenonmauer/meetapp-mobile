@@ -4,8 +4,8 @@ import api from '~/services/api';
 
 import { ProfileActions } from '~/store/ducks/profile';
 
-import ToastService from '~/services/toast';
-import NavigationService from '~/services/navigation';
+import ToastUtil from '~/util/toast';
+import NavigationUtil from '~/util/navigation';
 
 import SessionHelper from '~/util/session';
 import errorHandler from '~/util/error-handler';
@@ -22,13 +22,14 @@ export function* getProfile() {
 }
 
 export function* putProfile(action) {
-  const { data } = action.payload;
+  const { data, callback } = action.payload;
 
   const response = yield call(api.put, 'users', data);
 
   if (response.ok) {
     yield put(ProfileActions.putProfileSuccess());
-    yield call(ToastService.show, 'Perfil atualizado.', 3000);
+    yield call(callback);
+    yield call(ToastUtil.show, 'Perfil atualizado.', 3000);
   } else {
     yield errorHandler.handleHttpError(response);
     yield put(ProfileActions.putProfileFailure());
@@ -37,5 +38,5 @@ export function* putProfile(action) {
 
 export function* logout() {
   yield call(SessionHelper.clearToken);
-  yield call(NavigationService.navigate, 'SignIn');
+  yield call(NavigationUtil.navigate, 'SignIn');
 }

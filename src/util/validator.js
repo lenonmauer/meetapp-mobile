@@ -1,4 +1,4 @@
-import ToastService from '~/services/toast';
+import ToastUtil from '~/util/toast';
 
 const validate = async (schema, form) => {
   try {
@@ -7,7 +7,7 @@ const validate = async (schema, form) => {
     return true;
   } catch (err) {
     const error = err.errors[0];
-    ToastService.show(error, 2000);
+    ToastUtil.show(error, 2000);
     return false;
   }
 };

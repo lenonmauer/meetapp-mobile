@@ -7,9 +7,9 @@ const schema = Yup.object().shape({
 
   email: Yup.string()
     .required('Informe o seu e-mail.')
-    .email(),
+    .email('Informe um e-mail válido.'),
 
-  old_password: Yup.string().required('Informe a sua senha antiga.'),
+  old_password: Yup.string().required('Informe a sua senha atual.'),
 
   password: Yup.string()
     .required('Informe a sua nova senha.')
