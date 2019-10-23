@@ -15,7 +15,10 @@ function App() {
   return (
     <Provider store={store}>
       <StatusBar barStyle="light-content" backgroundColor={colors.black} />
-      <Toast ref={toastRef => ToastService.setToast(toastRef)} />
+      <Toast
+        ref={toastRef => ToastService.setToast(toastRef)}
+        style={{ backgroundColor: colors.primaryDark }}
+      />
       <Navigation
         ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
       />

@@ -11,7 +11,7 @@ function goBack() {
 }
 
 function navigate(routeName, params) {
-  navigator.dispatch(
+  return navigation.dispatch(
     NavigationActions.navigate({
       routeName,
       params,

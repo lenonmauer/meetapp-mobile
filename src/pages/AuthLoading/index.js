@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, ActivityIndicator, Text } from 'react-native';
+import { SafeAreaView, ActivityIndicator } from 'react-native';
 
-import navigationService from '~/services/navigation';
+import SessionHelper from '~/util/session';
 
 import styles from './styles';
 
-function AuthLoading() {
+function AuthLoading({ navigation }) {
   useEffect(() => {
-    setTimeout(() => {
-      navigationService.navigate('Auth', { caralho: 1 });
-    }, 1000);
+    async function verifyToken() {
+      const token = await SessionHelper.getToken();
+      navigation.navigate({ routeName: token ? 'Dashboard' : 'SignIn' });
+    }
+
+    verifyToken();
   });
 
   return (

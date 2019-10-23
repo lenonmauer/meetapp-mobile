@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavigationContext } from 'react-navigation';
+import React, { useRef } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -8,6 +6,7 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 
 import Logo from '~/components/Logo';
@@ -16,19 +15,15 @@ import Button from '~/components/Button';
 
 import { AuthActions } from '~/store/ducks/auth';
 
-import NavigationService from '~/services/navigation';
 import Validator from '~/util/validator';
 import schema from '~/schemas/signin';
 
 import styles from './styles';
 
-function SignIn() {
+function SignIn({ navigation }) {
   const passwordRef = useRef(null);
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
-  const navigation = useContext(NavigationContext);
-
-  console.tron.log('in app', navigation.state);
 
   async function handleFormikSubmit(values) {
     const isValid = await Validator.validate(schema, values);
@@ -36,14 +31,10 @@ function SignIn() {
     Keyboard.dismiss();
 
     if (!isValid) {
-      // return;
+      return;
     }
 
     dispatch(AuthActions.postSigninRequest(values));
-  }
-
-  function handleSubmitEmail() {
-    passwordRef.current.focus();
   }
 
   function renderForm(props) {
@@ -61,7 +52,7 @@ function SignIn() {
           containerStyle={styles.input}
           keyboardType="email-address"
           returnKeyType="next"
-          onSubmitEditing={handleSubmitEmail}
+          onSubmitEditing={() => passwordRef.current.focus()}
           placeholder="Digite seu e-mail"
         />
 
@@ -80,7 +71,7 @@ function SignIn() {
           Entrar
         </Button>
 
-        <TouchableOpacity onPress={() => NavigationService.navigate('SignUp')}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.linkSign}>Criar conta grátis</Text>
         </TouchableOpacity>
       </View>
