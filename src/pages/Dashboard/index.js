@@ -18,26 +18,34 @@ function Dashboard() {
   const { loading, data: meetups } = useSelector(state => state.meetup);
 
   useEffect(() => {
-    dispatch(MeetupActions.getMeetupsRequest(10, true));
-  }, [dispatch]);
+    dispatch(MeetupActions.getMeetupsRequest(date, 10, true));
+  }, [date, dispatch]);
 
   function handleEndReached() {
-    dispatch(MeetupActions.getMeetupsRequest(5));
+    if (!loading) {
+      dispatch(MeetupActions.getMeetupsRequest(date, 5));
+    }
   }
 
   function handleRefresh() {
-    dispatch(MeetupActions.getMeetupsRequest(10, true));
+    dispatch(MeetupActions.getMeetupsRequest(date, 10, true));
   }
 
   function handleDateChange(newDate) {
     setDate(newDate);
   }
 
+  function handlePressSubscribe(meetup) {
+    console.log('subscribe', meetup);
+
+    dispatch(MeetupActions.);
+  }
+
   function renderItem({ item }) {
     return (
       <Meetup
         meetup={item}
-        onPress={() => {}}
+        onPress={() => handlePressSubscribe(item)}
         actionLabel="Realizar inscrição"
       />
     );
@@ -64,7 +72,10 @@ function Dashboard() {
 
         {loading && (
           <View>
-            <ActivityIndicator size={48} color="white" />
+            <ActivityIndicator
+              size={styles.spinner.size}
+              color={styles.spinner.color}
+            />
           </View>
         )}
       </View>

@@ -11,4 +11,9 @@ export default {
     paddingHorizontal: metrics.basePadding * 2,
     paddingTop: metrics.basePadding * 2,
   },
+
+  spinner: {
+    color: colors.white,
+    size: 48,
+  },
 };

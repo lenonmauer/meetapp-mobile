@@ -7,15 +7,16 @@ import { MeetupActions } from '~/store/ducks/meetup';
 import errorHandler from '~/util/error-handler';
 
 export function* getMeetups(action) {
-  const { limit, clear } = action.payload;
+  const { date, limit, clearPrevious } = action.payload;
 
-  if (clear) {
-    yield put(MeetupActions.clearList());
+  if (clearPrevious) {
+    yield put(MeetupActions.clearMeetups());
   }
 
   const offset = yield select(state => state.meetup.data.length);
 
   const params = {
+    date,
     offset,
     limit,
   };

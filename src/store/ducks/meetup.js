@@ -9,7 +9,7 @@ export const Types = {
   GET_MEETUPS_REQUEST: '@meetup/GET_MEETUPS_REQUEST',
   GET_MEETUPS_SUCCESS: '@meetup/GET_MEETUPS_SUCCESS',
   GET_MEETUPS_FAILURE: '@meetup/GET_MEETUPS_FAILURE',
-  CLEAR_LIST: '@meetup/CLEAR_LIST',
+  CLEAR_MEETUPS: '@meetup/CLEAR_MEETUPS',
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -36,7 +36,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       };
     }
 
-    case Types.CLEAR_LIST: {
+    case Types.CLEAR_MEETUPS: {
       return {
         ...state,
         data: [],
@@ -49,11 +49,12 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 };
 
 export const Actions = {
-  getMeetupsRequest: (limit, clear = false) => ({
+  getMeetupsRequest: (date, limit, clearPrevious = false) => ({
     type: Types.GET_MEETUPS_REQUEST,
     payload: {
+      date,
       limit,
-      clear,
+      clearPrevious,
     },
   }),
 
@@ -67,8 +68,8 @@ export const Actions = {
     payload: {},
   }),
 
-  clearList: () => ({
-    type: Types.CLEAR_LIST,
+  clearMeetups: () => ({
+    type: Types.CLEAR_MEETUPS,
     payload: {},
   }),
 };
