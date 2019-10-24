@@ -7,6 +7,7 @@ import Meetup from '~/components/Meetup';
 import DateSwitch from '~/components/DateSwitch';
 
 import { MeetupActions } from '~/store/ducks/meetup';
+import { SubscriptionActions } from '~/store/ducks/subscription';
 
 import styles from './styles';
 
@@ -36,9 +37,7 @@ function Dashboard() {
   }
 
   function handlePressSubscribe(meetup) {
-    console.log('subscribe', meetup);
-
-    dispatch(MeetupActions.);
+    dispatch(SubscriptionActions.postSubscribeRequest(meetup.id));
   }
 
   function renderItem({ item }) {

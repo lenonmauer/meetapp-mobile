@@ -8,7 +8,7 @@ import { colors } from './styles';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
-import Subscription from '~/pages/Subscription';
+import Subscriptions from '~/pages/Subscriptions';
 import AuthLoading from '~/pages/AuthLoading';
 import SignUp from '~/pages/SignUp';
 import SignIn from '~/pages/SignIn';
@@ -40,7 +40,7 @@ const AppStack = createBottomTabNavigator(
       },
     },
     Subscription: {
-      screen: Subscription,
+      screen: Subscriptions,
       navigationOptions: {
         tabBarLabel: 'Inscrições',
         tabBarIcon: ({ focused }) => (
