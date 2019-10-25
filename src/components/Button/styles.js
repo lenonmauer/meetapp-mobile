@@ -27,6 +27,12 @@ export default {
     },
   },
 
+  disabled: {
+    container: {
+      opacity: 0.9,
+    },
+  },
+
   spinner: {
     color: colors.white,
     size: 28,

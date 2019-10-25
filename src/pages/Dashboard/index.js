@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '~/components/Header';
 import Meetup from '~/components/Meetup';
 import DateSwitch from '~/components/DateSwitch';
+import Button from '~/components/Button';
 
 import { MeetupActions } from '~/store/ducks/meetup';
 import { SubscriptionActions } from '~/store/ducks/subscription';
@@ -22,7 +23,7 @@ function Dashboard() {
     dispatch(MeetupActions.getMeetupsRequest(date, 10, true));
   }, [date, dispatch]);
 
-  function handleEndReached() {
+  function handleEndReached(data) {
     if (!loading) {
       dispatch(MeetupActions.getMeetupsRequest(date, 5));
     }
@@ -40,14 +41,22 @@ function Dashboard() {
     dispatch(SubscriptionActions.postSubscribeRequest(meetup.id));
   }
 
-  function renderItem({ item }) {
+  function renderMeetupButton(meetup) {
+    const { subscribing, subscribed } = meetup;
+
     return (
-      <Meetup
-        meetup={item}
-        onPress={() => handlePressSubscribe(item)}
-        actionLabel="Realizar inscrição"
-      />
+      <Button
+        onPress={() => handlePressSubscribe(meetup)}
+        loading={subscribing}
+        disabled={subscribed}
+      >
+        {subscribed ? 'Inscrito' : 'Realizar inscrição'}
+      </Button>
     );
+  }
+
+  function renderItem({ item }) {
+    return <Meetup meetup={item} renderAction={renderMeetupButton} />;
   }
 
   return (
@@ -59,18 +68,19 @@ function Dashboard() {
 
         {meetups.length > 0 && (
           <FlatList
+            initialNumToRender={2}
             refreshing={refreshing}
             onRefresh={handleRefresh}
             data={meetups}
             keyExtractor={item => item.id.toString()}
             renderItem={renderItem}
             onEndReached={handleEndReached}
-            onEndReachedThreshold={0.3}
+            onEndReachedThreshold={0.1}
           />
         )}
 
-        {loading && (
-          <View>
+        {loading && meetups.length === 0 && (
+          <View style={styles.spinner.container}>
             <ActivityIndicator
               size={styles.spinner.size}
               color={styles.spinner.color}

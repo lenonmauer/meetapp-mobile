@@ -3,7 +3,7 @@ import SessionHelper from '~/util/session';
 import mockAxios from './mock-api';
 
 const api = apisauce.create({
-  baseURL: 'https://api.github.com',
+  baseURL: 'http://localhost:3333/api',
 });
 
 api.addAsyncRequestTransform(request => async () => {

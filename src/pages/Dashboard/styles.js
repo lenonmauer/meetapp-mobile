@@ -13,6 +13,10 @@ export default {
   },
 
   spinner: {
+    container: {
+      marginTop: metrics.baseMargin,
+    },
+
     color: colors.white,
     size: 48,
   },

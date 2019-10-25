@@ -28,13 +28,14 @@ export default function mockAxios(axiosInstance) {
     const dayInMili = 86400000;
     const { offset, limit } = request.params;
 
-    const data = Array.from({ length: 50 }, (v, k) => {
+    const data = Array.from({ length: 15 }, (v, k) => {
+      const id = k + 1;
       const timestamp = now + k * dayInMili;
       const date = new Date(timestamp).toISOString();
 
       return {
-        id: k,
-        title: `Meetup ${k}`,
+        id,
+        title: `Meetup ${id}`,
         thumb: 'https://via.placeholder.com/500',
         date,
         location: `Rua zueira`,
@@ -50,5 +51,5 @@ export default function mockAxios(axiosInstance) {
   });
 
   mock.onGet('/meetups/subscriptions').reply(200);
-  mock.onGet('/meetups/:meetupId/subscriptions').reply(200);
+  mock.onPost(/\/meetups\/\d+\/subscriptions/).reply(200);
 }

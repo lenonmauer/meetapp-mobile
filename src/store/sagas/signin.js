@@ -20,7 +20,7 @@ export function* postSignIn(action) {
     yield call(SessionHelper.setToken, token);
     yield call(NavigationUtil.navigate, 'Dashboard');
   } else {
-    yield errorHandler.handleHttpError(response);
+    yield call(errorHandler.handleHttpError, response);
     yield put(AuthActions.postSignupFailure());
   }
 }

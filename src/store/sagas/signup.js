@@ -18,7 +18,7 @@ export function* postSignUp(action) {
     yield call(NavigationUtil.navigate, 'SignIn');
     yield call(ToastUtil.show, 'Cadastro realizado. Faça o login.', 3000);
   } else {
-    yield errorHandler.handleHttpError(response);
+    yield call(errorHandler.handleHttpError, response);
     yield put(AuthActions.postSignupFailure());
   }
 }

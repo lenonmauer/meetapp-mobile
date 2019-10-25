@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 
 import styles from './styles';
 
-function Meetup({ meetup, onPress, actionLabel }) {
+function Meetup({ meetup, renderAction }) {
   return (
     <View style={styles.container}>
       <Image
@@ -50,7 +50,7 @@ function Meetup({ meetup, onPress, actionLabel }) {
           </Text>
         </View>
 
-        <Button onPress={onPress}>{actionLabel}</Button>
+        {renderAction(meetup)}
       </View>
     </View>
   );

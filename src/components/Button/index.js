@@ -4,7 +4,7 @@ import { View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 
 import styles from './styles';
 
-function Button({ children, theme, loading, onPress, style = {} }) {
+function Button({ children, theme, loading, disabled, onPress, style = {} }) {
   const isDarkTheme = theme === 'dark';
   const buttonStyle = [
     styles.container,
@@ -14,7 +14,7 @@ function Button({ children, theme, loading, onPress, style = {} }) {
   const labelStyle = [styles.label, isDarkTheme && styles.themeDark.label];
 
   return (
-    <TouchableOpacity onPress={onPress} disabled={loading}>
+    <TouchableOpacity onPress={onPress} disabled={disabled || loading}>
       <View style={buttonStyle}>
         {loading ? (
           <ActivityIndicator

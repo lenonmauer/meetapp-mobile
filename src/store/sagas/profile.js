@@ -16,7 +16,7 @@ export function* getProfile() {
   if (response.ok) {
     yield put(ProfileActions.getProfileSuccess(response.data));
   } else {
-    yield errorHandler.handleHttpError(response);
+    yield call(errorHandler.handleHttpError, response);
     yield put(ProfileActions.getProfileFailure());
   }
 }
@@ -31,7 +31,7 @@ export function* putProfile(action) {
     yield call(callback);
     yield call(ToastUtil.show, 'Perfil atualizado.', 3000);
   } else {
-    yield errorHandler.handleHttpError(response);
+    yield call(errorHandler.handleHttpError, response);
     yield put(ProfileActions.putProfileFailure());
   }
 }
