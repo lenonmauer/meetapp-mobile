@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, FlatList, ActivityIndicator } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  ActivityIndicator,
+  Text,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '~/components/Header';
@@ -16,6 +22,7 @@ function Dashboard() {
   const dispatch = useDispatch();
   const [refreshing] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [ready, setReady] = useState(false);
 
   const { loading, data: meetups } = useSelector(state => state.meetup);
 
@@ -42,21 +49,24 @@ function Dashboard() {
   }
 
   function renderMeetupButton(meetup) {
-    const { subscribing, subscribed } = meetup;
+    const { subscribing } = meetup;
 
     return (
       <Button
         onPress={() => handlePressSubscribe(meetup)}
         loading={subscribing}
-        disabled={subscribed}
       >
-        {subscribed ? 'Inscrito' : 'Realizar inscrição'}
+        Realizar inscrição
       </Button>
     );
   }
 
   function renderItem({ item }) {
     return <Meetup meetup={item} renderAction={renderMeetupButton} />;
+  }
+
+  function renderListEmptyComponent() {
+    return <Text>Nenhum meetup a ser exibido.</Text>;
   }
 
   return (
@@ -70,6 +80,7 @@ function Dashboard() {
           <FlatList
             initialNumToRender={2}
             refreshing={refreshing}
+            ListEmptyComponent={renderListEmptyComponent}
             onRefresh={handleRefresh}
             data={meetups}
             keyExtractor={item => item.id.toString()}
