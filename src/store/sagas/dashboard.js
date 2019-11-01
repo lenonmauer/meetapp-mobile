@@ -36,18 +36,14 @@ export function* getMeetups(action) {
 export function* postSubscribe(action) {
   const { id } = action.payload;
 
-  yield put(MeetupActions.setSubscribing(id, true));
-
   const response = yield call(api.post, `/meetups/${id}/subscriptions`);
 
   if (response.ok) {
-    yield put(SubscriptionActions.postSubscribeSuccess(response.data));
+    yield put(SubscriptionActions.postSubscribeSuccess(id));
     yield put(MeetupActions.removeMeetup(id));
     yield call(Toast.show, 'Inscrição realizada.');
   } else {
     yield call(errorHandler.handleHttpError, response);
-    yield put(SubscriptionActions.postSubscribeFailure());
+    yield put(SubscriptionActions.postSubscribeFailure(id));
   }
-
-  yield put(MeetupActions.setSubscribing(id, false));
 }

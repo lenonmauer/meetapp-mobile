@@ -22,12 +22,14 @@ function Dashboard() {
   const dispatch = useDispatch();
   const [refreshing] = useState(false);
   const [date, setDate] = useState(new Date());
-  const [ready, setReady] = useState(false);
+  const initialCountRender = 7;
 
   const { loading, data: meetups } = useSelector(state => state.meetup);
+  const { subscribingList } = useSelector(state => state.subscription);
+  const hasMeetups = meetups.length > 0;
 
   useEffect(() => {
-    dispatch(MeetupActions.getMeetupsRequest(date, 10, true));
+    dispatch(MeetupActions.getMeetupsRequest(date, initialCountRender, true));
   }, [date, dispatch]);
 
   function handleEndReached(data) {
@@ -37,7 +39,7 @@ function Dashboard() {
   }
 
   function handleRefresh() {
-    dispatch(MeetupActions.getMeetupsRequest(date, 10, true));
+    dispatch(MeetupActions.getMeetupsRequest(date, initialCountRender, true));
   }
 
   function handleDateChange(newDate) {
@@ -49,7 +51,7 @@ function Dashboard() {
   }
 
   function renderMeetupButton(meetup) {
-    const { subscribing } = meetup;
+    const subscribing = subscribingList.includes(meetup.id);
 
     return (
       <Button
@@ -65,9 +67,20 @@ function Dashboard() {
     return <Meetup meetup={item} renderAction={renderMeetupButton} />;
   }
 
-  function renderListEmptyComponent() {
-    return <Text>Nenhum meetup a ser exibido.</Text>;
-  }
+  const ListEmpty = (
+    <View style={styles.emptyList.container}>
+      <Text style={styles.emptyList.text}>Nenhum meetup encontrado.</Text>
+    </View>
+  );
+
+  const LoadingSpinner = (
+    <View style={styles.spinner.container}>
+      <ActivityIndicator
+        size={styles.spinner.size}
+        color={styles.spinner.color}
+      />
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,11 +89,14 @@ function Dashboard() {
       <View style={styles.content}>
         <DateSwitch date={date} onDateChange={handleDateChange} />
 
-        {meetups.length > 0 && (
+        {!loading && !hasMeetups && ListEmpty}
+
+        {loading && !hasMeetups && LoadingSpinner}
+
+        {hasMeetups && (
           <FlatList
             initialNumToRender={2}
             refreshing={refreshing}
-            ListEmptyComponent={renderListEmptyComponent}
             onRefresh={handleRefresh}
             data={meetups}
             keyExtractor={item => item.id.toString()}
@@ -88,15 +104,6 @@ function Dashboard() {
             onEndReached={handleEndReached}
             onEndReachedThreshold={0.1}
           />
-        )}
-
-        {loading && meetups.length === 0 && (
-          <View style={styles.spinner.container}>
-            <ActivityIndicator
-              size={styles.spinner.size}
-              color={styles.spinner.color}
-            />
-          </View>
         )}
       </View>
     </SafeAreaView>

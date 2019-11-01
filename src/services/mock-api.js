@@ -1,5 +1,29 @@
 import MockAdapter from 'axios-mock-adapter';
 
+function generateMeetups({ offset, limit }) {
+  const now = Date.now();
+  const dayInMili = 86400000;
+
+  const data = Array.from({ length: 25 }, (v, k) => {
+    const id = k + 1;
+    const timestamp = now + k * dayInMili;
+    const date = new Date(timestamp).toISOString();
+
+    return {
+      id,
+      title: `Meetup ${id}`,
+      thumb: 'https://via.placeholder.com/500',
+      date,
+      location: `Rua zueira`,
+      user: {
+        name: 'Don Joe',
+      },
+    };
+  });
+
+  return data.slice(offset, offset + limit);
+}
+
 export default function mockAxios(axiosInstance) {
   const mock = new MockAdapter(axiosInstance, { delayResponse: 1000 });
 
@@ -13,8 +37,6 @@ export default function mockAxios(axiosInstance) {
   mock.onPut('/users').reply(200);
 
   mock.onPost('/sessions').reply(config => {
-    const { email, password } = JSON.parse(config.data);
-
     return [
       200,
       {
@@ -24,32 +46,22 @@ export default function mockAxios(axiosInstance) {
   });
 
   mock.onGet('/meetups').reply(request => {
-    const now = Date.now();
-    const dayInMili = 86400000;
     const { offset, limit } = request.params;
 
-    const data = Array.from({ length: 15 }, (v, k) => {
-      const id = k + 1;
-      const timestamp = now + k * dayInMili;
-      const date = new Date(timestamp).toISOString();
+    const meetups = generateMeetups({ offset, limit });
 
-      return {
-        id,
-        title: `Meetup ${id}`,
-        thumb: 'https://via.placeholder.com/500',
-        date,
-        location: `Rua zueira`,
-        user: {
-          name: 'Don Joe',
-        },
-      };
-    });
-
-    const sliced = data.slice(offset, offset + limit);
-
-    return [200, sliced];
+    return [200, meetups];
   });
 
-  mock.onGet('/meetups/subscriptions').reply(200);
+  mock.onGet('/subscriptions').reply(request => {
+    const { offset, limit } = request.params;
+
+    const meetups = generateMeetups({ offset, limit });
+
+    return [200, meetups];
+  });
+
   mock.onPost(/\/meetups\/\d+\/subscriptions/).reply(200);
+
+  mock.onDelete(/\/subscriptions\/\d+/).reply(200);
 }

@@ -20,4 +20,17 @@ export default {
     color: colors.white,
     size: 48,
   },
+
+  emptyList: {
+    container: {
+      flex: 1,
+      marginTop: metrics.baseMargin * 2,
+    },
+
+    text: {
+      color: colors.white,
+      textAlign: 'center',
+      fontSize: 18,
+    },
+  },
 };

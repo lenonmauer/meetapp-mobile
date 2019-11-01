@@ -7,6 +7,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': 'off',
     'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     'import/resolver': {

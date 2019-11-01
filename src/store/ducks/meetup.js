@@ -9,7 +9,6 @@ export const Types = {
   GET_MEETUPS_REQUEST: '@meetup/GET_MEETUPS_REQUEST',
   GET_MEETUPS_SUCCESS: '@meetup/GET_MEETUPS_SUCCESS',
   GET_MEETUPS_FAILURE: '@meetup/GET_MEETUPS_FAILURE',
-  SET_SUBSCRIBING: '@meetup/SET_SUBSCRIBING',
   REMOVE_MEETUP: '@meetup/REMOVE_MEETUP',
   CLEAR_MEETUPS: '@meetup/CLEAR_MEETUPS',
 };
@@ -35,24 +34,6 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         loading: false,
-      };
-    }
-
-    case Types.SET_SUBSCRIBING: {
-      const data = state.data.map(meetup => {
-        if (meetup.id === payload.id) {
-          return {
-            ...meetup,
-            subscribing: payload.subscribing,
-          };
-        }
-
-        return meetup;
-      });
-
-      return {
-        ...state,
-        data,
       };
     }
 
@@ -100,14 +81,6 @@ export const Actions = {
   clearMeetups: () => ({
     type: Types.CLEAR_MEETUPS,
     payload: {},
-  }),
-
-  setSubscribing: (id, subscribing) => ({
-    type: Types.SET_SUBSCRIBING,
-    payload: {
-      id,
-      subscribing,
-    },
   }),
 
   removeMeetup: id => ({
