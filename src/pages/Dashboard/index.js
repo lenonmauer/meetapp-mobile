@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   SafeAreaView,
   View,
@@ -29,17 +29,24 @@ function Dashboard() {
   const hasMeetups = meetups.length > 0;
 
   useEffect(() => {
-    dispatch(MeetupActions.getMeetupsRequest(date, initialCountRender, true));
-  }, [date, dispatch]);
+    fetchMeetups(initialCountRender);
+  }, [fetchMeetups]);
+
+  const fetchMeetups = useCallback(
+    (count, shouldRefresh = true) => {
+      dispatch(MeetupActions.getMeetupsRequest(date, count, shouldRefresh));
+    },
+    [date, dispatch],
+  );
 
   function handleEndReached(data) {
     if (!loading) {
-      dispatch(MeetupActions.getMeetupsRequest(date, 5));
+      fetchMeetups(5, false);
     }
   }
 
   function handleRefresh() {
-    dispatch(MeetupActions.getMeetupsRequest(date, initialCountRender, true));
+    fetchMeetups(initialCountRender);
   }
 
   function handleDateChange(newDate) {
