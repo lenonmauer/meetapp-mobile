@@ -14,15 +14,22 @@ function Button({ children, theme, loading, disabled, onPress, style = {} }) {
   const labelStyle = [styles.label, isDarkTheme && styles.themeDark.label];
 
   return (
-    <TouchableOpacity onPress={onPress} disabled={disabled || loading}>
-      <View style={buttonStyle}>
+    <TouchableOpacity
+      testID="Button__touchable"
+      onPress={onPress}
+      disabled={disabled || loading}
+    >
+      <View testID="container" style={buttonStyle}>
         {loading ? (
           <ActivityIndicator
+            testID="Button__spinner"
             size={styles.spinner.size}
             color={styles.spinner.color}
           />
         ) : (
-          <Text style={labelStyle}>{children}</Text>
+          <Text testID="Button__label" style={labelStyle}>
+            {children}
+          </Text>
         )}
       </View>
     </TouchableOpacity>
