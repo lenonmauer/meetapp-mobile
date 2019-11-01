@@ -47,6 +47,7 @@ function SignIn({ navigation }) {
         </View>
 
         <Input
+          testID="email"
           onChangeText={handleChange('email')}
           value={values.email}
           containerStyle={styles.input}
@@ -57,6 +58,7 @@ function SignIn({ navigation }) {
         />
 
         <Input
+          testID="password"
           ref={passwordRef}
           onChangeText={handleChange('password')}
           value={values.password}
@@ -67,11 +69,14 @@ function SignIn({ navigation }) {
           onSubmitEditing={handleSubmit}
         />
 
-        <Button loading={loading} onPress={handleSubmit}>
+        <Button loading={loading} onPress={handleSubmit} testID="submit">
           Entrar
         </Button>
 
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <TouchableOpacity
+          testID="signup-link"
+          onPress={() => navigation.navigate('SignUp')}
+        >
           <Text style={styles.linkSign}>Criar conta grátis</Text>
         </TouchableOpacity>
       </View>

@@ -4,7 +4,15 @@ import { View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 
 import styles from './styles';
 
-function Button({ children, theme, loading, disabled, onPress, style = {} }) {
+function Button({
+  children,
+  theme,
+  loading,
+  disabled,
+  onPress,
+  testID = 'Button__touchable',
+  style = {},
+}) {
   const isDarkTheme = theme === 'dark';
   const buttonStyle = [
     styles.container,
@@ -15,7 +23,7 @@ function Button({ children, theme, loading, disabled, onPress, style = {} }) {
 
   return (
     <TouchableOpacity
-      testID="Button__touchable"
+      testID={testID}
       onPress={onPress}
       disabled={disabled || loading}
     >
