@@ -17,16 +17,20 @@ function DateSwitch({ date, onDateChange }) {
     <View style={styles.container}>
       <TouchableOpacity onPress={onPrev}>
         <Icon
+          testID="left-arrow"
           name="chevron-left"
           size={styles.icon.size}
           color={styles.icon.color}
         />
       </TouchableOpacity>
 
-      <Text style={styles.label}>{dateFormatted}</Text>
+      <Text testID="date-label" style={styles.label}>
+        {dateFormatted}
+      </Text>
 
       <TouchableOpacity onPress={onNext}>
         <Icon
+          testID="right-arrow"
           name="chevron-right"
           size={styles.icon.size}
           color={styles.icon.color}
