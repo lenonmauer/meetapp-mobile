@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, getNodeText } from '@testing-library/react-native';
 
-import Button from '../../src/components/Button';
+import Button from '~/components/Button';
 
 describe('components/Button test', () => {
   it('should call onPress prop when button is clicked', async () => {
